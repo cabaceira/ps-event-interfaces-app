@@ -1,0 +1,19 @@
+{
+    "id": "d6c843a4-8457-4220-96c9-a38dade50df8",
+    "version": "0.0.1",
+    "requiredApiVersion": "^1.19.0",
+    "iconFile": "icon.png",
+    "author": {
+        "name": "Luis Cabaceira",
+        "homepage": "NA",
+        "support": "NA"
+    },
+    "name": "ps-event-interfaces-listeners",
+    "nameSlug": "ps-event-interfaces-listeners",
+    "classFile": "PsEventInterfacesListenersApp.ts",
+    "description": "unit samples for suported event interfaces",
+    "implements": [
+        "IPostRoomCreate",
+        "IPreEmailSent"
+    ]
+}
