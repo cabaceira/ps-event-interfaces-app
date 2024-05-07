@@ -2,42 +2,28 @@
 
 ## ps-event-interfaces-listeners
 
-This Project contains unit samples for the event interfaces 
-suported in Rocket.Chat apps engine. 
+This project contains unit samples for the event interfaces supported in Rocket.Chat [Apps Engine](https://developer.rocket.chat/apps-engine/rocket.chat-apps-engine). 
 
 ![](images/event-interfaces.webp)
 
 When an event occurs, there are pre-handlers and post-handlers.
 
 * The set of **pre-handlers** are executed before the event is completed.
-*
 * The set of **post-handlers** are executed when the event is completed. 
 
-Rocket.Chat reccomends pre-handlers to modify, extend, or change the data used for the event. 
-
-If you want to listen for an event and _not modify anything_, **use the post-handlers**.
-
+Rocket.Chat recommends using pre-handlers to modify, extend, or change the data used for the event. If you want to listen for an event and _not modify anything_, use the post-handlers.
 
 The handlers can operate in different ways :
 
-**Prevent**
-: Determines whether the event should be prevented or not.
-
-**Extend**
-: Allows extending the data without being destructive of the data (adding an attachment to a message for example).
-
-**Modify**
-: Allows for destructive changes to the data (change any data).
-
-**IPreEvent**
-: Handlers that are called before an event happens.
-
-**IPostEvent**
-: Handlers that are called after an event happens.
+* **Prevent**: Determines whether the event should be prevented or not.
+* **Extend**: Allows extending the data without being destructive of the data (adding an attachment to a message, for example).
+* **Modify**: Allows for destructive changes to the data (change any data).
+* **IPreEvent**: Handlers that are called before an event happens.
+* **IPostEvent**: Handlers that are called after an event happens.
 
 To use events, our events app must implement the event interfaces and this is done by using the keyword implements and the name of the events, comma separated.
 
-This project is based on explanatory examples for all existing event-interfaces that can be accessed via apps-engine. Each example has a corresponding video with the event-listener in action from a developer perspective.
+This project is based on explanatory examples for all existing event interfaces that can be accessed via Apps Engine. Each example has a corresponding video with the event-listener in action from a developer perspective.
 
 
 ## Getting Started
@@ -48,7 +34,7 @@ To run this set of examples, you need to have a running instance of Rocket.Chat 
 
 ## Post Room Create 
 
-As a first simple example Our app will implement the post-room creation interface with the PostRoomCreate method. This tells Apps-Engine that the app wants to connect to that event. Whenever a room is created, Apps-Engine executes this method in the app.
+As a first simple example, our app will implement the post-room creation interface with the PostRoomCreate method. This tells Apps-Engine that the app wants to connect to that event. Whenever a room is created, Apps-Engine executes this method in the app.
 
 Each interface contains one important method to execute the defined actions: This is the event handler. There is another method ("check") that we will skip on our examples as it will soon be deprecated.
 
@@ -84,7 +70,7 @@ export class PsEventInterfacesListenersApp extends App implements IPostRoomCreat
 |:-----------|:------------:|------------:|
 | A new room is created       |    IPostRoomCreate      |        executePostRoomCreate |
 
-In this example we are constructing a log ouput as per the method below.
+In this example, we are constructing a log output as per the method below.
 
     public executePostRoomCreate(room: IRoom, read: IRead, http: IHttp, persistence: IPersistence, modify: IModify): Promise<void> {
         console.debug(' ************************************************* ');
@@ -93,12 +79,12 @@ In this example we are constructing a log ouput as per the method below.
         return Promise.resolve(undefined);
     }
 
-As you can see in the next video, everytime a new room/channel is created, we can see the output from our method executePostRoomCreate.
+As you can see in the next video, every time a new room/channel is created, we can see the output from our method executePostRoomCreate.
 
 ![](videos/post-room-create.mov) 
 
 
-Further more, we can expand our example and send a message to the new room as the our app bot. Instead of just writting to the log file, we will now interact with the object of the event, in this case the room.
+Furthermore, we can expand our example and send a message to the new room as our app bot. Instead of just writing to the log file, we will now interact with the object of the event, in this case, the room.
 
 ```
  public executePostRoomCreate(room: IRoom, read: IRead, http: IHttp, persistence: IPersistence, modify: IModify): Promise<void> {
@@ -134,17 +120,17 @@ This example Our app will implement the pre-email-sent interface with the execut
 |:-----------|:------------:|------------:|
 | Before the mailer sends an email       |    IPreEmailSent      |        executePreEmailSent |
 
-In this case our method is building and email object that includes the text of the mailer email in its body.
+In this case, our method is building an email object that includes the text of the mailer email in its body.
 
-To simulate a SMTP server we are using the following project : 
+To simulate an SMTP server we are using the following project : 
 
 *  [fake-smpt-server.](https://github.com/haravich/fake-smtp-server?tab=readme-ov-file)
 
-This project offers a quick way for setting up a fake SMTP server using a Docker image, allowing you to mimic email exchanges for testing purposes. It offers a web-interface where we can see the intercepted emails.
+This project offers a quick way to set up a fake SMTP server using a Docker image, allowing you to mimic email exchanges for testing purposes. It offers a web interface where we can see the intercepted emails.
 
 ![](images/MailCatcher.png)
 
-The method in our App, builds a IEmailDescriptor object.  
+The method in our app builds an IEmailDescriptor object.  
 
 ```
 public executePreEmailSent(context: IPreEmailSentContext, read: IRead, http: IHttp, persis: IPersistence, modify: IModify): Promise<IEmailDescriptor> {
@@ -164,7 +150,7 @@ public executePreEmailSent(context: IPreEmailSentContext, read: IRead, http: IHt
     }
 ```
 
-Notice that the app is using the context of the original email to include on its Email Body.
+Notice that the app is using the context of the original email to include in its Email Body.
 
 `
 context.email.text
