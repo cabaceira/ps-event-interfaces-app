@@ -1,10 +1,8 @@
-# Professional Services Event Interface Examples in Apps Engine
+# Event Interface Examples in Apps Engine
 
 ## ps-event-interfaces-listeners
 
 This project contains unit samples for the event interfaces supported in Rocket.Chat [Apps Engine](https://developer.rocket.chat/apps-engine/rocket.chat-apps-engine). 
-
-![](images/event-interfaces.webp)
 
 When an event occurs, there are pre-handlers and post-handlers.
 
@@ -124,11 +122,11 @@ In this case, our method is building an email object that includes the text of t
 
 To simulate an SMTP server we are using the following project : 
 
-*  [fake-smpt-server.](https://github.com/haravich/fake-smtp-server?tab=readme-ov-file)
+*  [fake-smpt-server](https://github.com/haravich/fake-smtp-server?tab=readme-ov-file)
 
 This project offers a quick way to set up a fake SMTP server using a Docker image, allowing you to mimic email exchanges for testing purposes. It offers a web interface where we can see the intercepted emails.
 
-![](images/MailCatcher.png)
+![image of local inbox](images/MailCatcher.png)
 
 The method in our app builds an IEmailDescriptor object.  
 
