@@ -79,7 +79,7 @@ In this example, we are constructing a log output as per the method below.
 
 As you can see in the next video, every time a new room/channel is created, we can see the output from our method executePostRoomCreate.
 
-![](videos/post-room-create.mov) 
+![screen recording of the output](videos/post-room-create.mov) 
 
 
 Furthermore, we can expand our example and send a message to the new room as our app bot. Instead of just writing to the log file, we will now interact with the object of the event, in this case, the room.
@@ -103,7 +103,7 @@ Furthermore, we can expand our example and send a message to the new room as our
 ```
 
 
-![](videos/post-room-create-with-message.mov)
+![screen recording of the output](post-room-create-with-message.mov)
 
 
 ## Pre Email Sent
@@ -156,4 +156,4 @@ context.email.text
 
 To test this event, we can ask Rocket.Chat to send an email using the Mailer function in the Administration console.
 
-![](videos/pre-email-sent.mov)
+![screen recording of the output](videos/pre-email-sent.mov)
