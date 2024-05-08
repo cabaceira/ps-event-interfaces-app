@@ -164,7 +164,7 @@ To test this event, we can ask Rocket.Chat to send an email using the **Mailer**
 To send the test mail, follow these steps:
 1. Go to **Administration** > **Workspace** > **Mailer**.
 2. Enter any email ID in the **From** field. For example, `test@example.com`.
-3. Enter any value in the **Subject** and **Email body** fields. Make sure to enter `[unsubscribe]` in the **Email body**.
+3. Enter any value in the **Subject** and **Email body** fields. Make sure to include `[unsubscribe]` in the **Email body**.
 4. Click **Send Email**.
 
 You will see the email in the local inbox that you set up using MailCatcher.
