@@ -32,9 +32,9 @@ To run this set of examples, you need to have a running instance of Rocket.Chat 
 
 ## Post Room Create 
 
-As a first simple example, our app will implement the post-room creation interface with the PostRoomCreate method. This tells Apps-Engine that the app wants to connect to that event. Whenever a room is created, Apps-Engine executes this method in the app.
+As a first simple example, our app will implement the post-room creation interface with the [`PostRoomCreate`](https://rocketchat.github.io/Rocket.Chat.Apps-engine/interfaces/rooms_IPostRoomCreate.IPostRoomCreate.html) method. This tells Apps-Engine that the app wants to connect to that event. Whenever a room is created, Apps-Engine executes this method in the app.
 
-Each interface contains one important method to execute the defined actions: This is the event handler. There is another method ("check") that we will skip on our examples as it will soon be deprecated.
+Each interface contains one important method to execute the defined actions: This is the event handler. There is another method ("check") that we will skip in our examples as it will soon be deprecated.
 
 Our first example will write on the log a message every time a new room/channel is created.
 
@@ -108,7 +108,7 @@ Furthermore, we can expand our example and send a message to the new room as our
 
 ## Pre Email Sent
 
-This example Our app will implement the pre-email-sent interface with the executePreEmailSent method.  Whenever an email is sent from the Rocket.Chat mailer,  Apps-Engine executes this method in the app.
+In this example, our app will implement the pre-email-sent interface with the [`executePreEmailSent`](https://rocketchat.github.io/Rocket.Chat.Apps-engine/interfaces/email_IPreEmailSent.IPreEmailSent.html#executePreEmailSent) method.  Whenever an email is sent from the Rocket.Chat mailer, Apps-Engine executes this method in the app.
 
 
 **PRE EMAIL SENT TABLE**
@@ -128,7 +128,7 @@ This project offers a quick way to set up a fake SMTP server using a Docker imag
 
 ![image of local inbox](images/MailCatcher.png)
 
-The method in our app builds an IEmailDescriptor object.  
+The method in our app builds an [`IEmailDescriptor`](https://rocketchat.github.io/Rocket.Chat.Apps-engine/interfaces/email_IEmailDescriptor.IEmailDescriptor.html) object.  
 
 ```
 public executePreEmailSent(context: IPreEmailSentContext, read: IRead, http: IHttp, persis: IPersistence, modify: IModify): Promise<IEmailDescriptor> {
@@ -154,6 +154,19 @@ Notice that the app is using the context of the original email to include in its
 context.email.text
 `
 
-To test this event, we can ask Rocket.Chat to send an email using the Mailer function in the Administration console.
+To test this event, we can ask Rocket.Chat to send an email using the **Mailer** and **SMTP** functions from the Administration console. To do this, follow these steps:
+1. In your workspace, go to **Administration** > **Workspace** > **Settings** > **Email** > **SMTP**.
+2. Select **Protocol** as `smtp`.
+3. Enter the value of **Host** as `host.docker.internal`.
+4. Enter the value of **Port** as `1025`.
+5. Save the changes.
+
+To send the test mail, follow these steps:
+1. Go to **Administration** > **Workspace** > **Mailer**.
+2. Enter any email ID in the **From** field. For example, `test@example.com`.
+3. Enter any value in the **Subject** and **Email body** fields. Make sure to enter `[unsubscribe]` in the **Email body**.
+4. Click **Send Email**.
+
+You will see the email in the local inbox that you set up using MailCatcher.
 
 ![screen recording of the output](videos/pre-email-sent.mov)
